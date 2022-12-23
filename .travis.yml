@@ -1,8 +1,8 @@
 language: python
 python:
-  -"3.4"
-  -"3.5"
-  -"3.9.12"
+  -3.4
+  -3.5
+  -3.9.12
 before_install:
   - pip install pygame
   - pip install os
