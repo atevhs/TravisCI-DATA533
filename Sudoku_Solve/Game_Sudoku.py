@@ -49,16 +49,20 @@ class Game_Sudoku(object):
  
     # game initiate
     def init(self):
-        self.blank = []
-        # sudoku question and answer
-        g = Generate(self.counts[self.level])
-        self.martix = g.build_martix()
- 
-        # get the position of blank
-        for i in range(9):
-            for j in range(9):
-                if self.martix[i][j] == 0:
-                    self.blank.append([i, j])
+        try:
+            self.blank = []
+            # sudoku question and answer
+            g = Generate(self.counts[self.level])
+            self.martix = g.build_martix()
+    
+            # get the position of blank
+            for i in range(9):
+                for j in range(9):
+                    if self.martix[i][j] == 0:
+                        self.blank.append([i, j])
+        except Exception as error:
+            print("Unexpected error")
+            raise
 
     # windows setting
     def Form(self):
@@ -142,23 +146,28 @@ class Game_Sudoku(object):
  
     # user action(select window): keyboard/mouse input
     def SelectedAction(self):
-        for event in pygame.event.get():  
-            if event.type == pygame.QUIT:  # pygame.QUIT
-                sys.exit()  # The sys.exit() function is used to terminate the process by thring an exception
-            elif event.type == pygame.MOUSEMOTION:  # mouse moving
-                position = pygame.mouse.get_pos()
-                self.move_x, self.move_y = position[0], position[1]
-            elif event.type == pygame.MOUSEBUTTONDOWN:  # mouse clicking
-                position = pygame.mouse.get_pos()
-                self.press_x, self.press_y = position[0], position[1]
-                if 0 < self.press_x < 260 and 0 < self.press_y < 100:
-                    self.level = 0
-                elif 0 < self.press_x < 260 and 100 < self.press_y < 200:
-                    self.level = 1
-                elif 0 < self.press_x < 260 and 200 < self.press_y < 300:
-                    self.level = 2
-            elif event.type == pygame.MOUSEBUTTONUP:  # mouse button up
-                self.Form()
+        try:
+            for event in pygame.event.get():  
+                if event.type == pygame.QUIT:  # pygame.QUIT
+                    sys.exit()  # The sys.exit() function is used to terminate the process by thring an exception
+                elif event.type == pygame.MOUSEMOTION:  # mouse moving
+                    position = pygame.mouse.get_pos()
+                    self.move_x, self.move_y = position[0], position[1]
+                elif event.type == pygame.MOUSEBUTTONDOWN:  # mouse clicking
+                    position = pygame.mouse.get_pos()
+                    self.press_x, self.press_y = position[0], position[1]
+                    if 0 < self.press_x < 260 and 0 < self.press_y < 100:
+                        self.level = 0
+                    elif 0 < self.press_x < 260 and 100 < self.press_y < 200:
+                        self.level = 1
+                    elif 0 < self.press_x < 260 and 200 < self.press_y < 300:
+                        self.level = 2
+                elif event.type == pygame.MOUSEBUTTONUP:  # mouse button up
+                    self.Form()
+        except IndexError:
+            print("please check the position of mouse list")
+        except Exception:
+            print("Unexpected error")
         paint = Paint()
         paint.PaintSelected(self.selected_form, self.move_x, self.move_y)  # draw grid
  
@@ -172,8 +181,12 @@ class Game_Sudoku(object):
         rset = self.martix[self.r, :]  # r
         cset = self.martix[:, self.c]  # cumn
         blockset = self.martix[self.r // 3 * 3: self.r // 3 * 3 + 3, self.c // 3 * 3: self.c // 3 * 3 + 3].reshape(9)  # grid
- 
-        n = int(n)
+
+        try:
+            n = int(n)
+        except ValueError:
+            print("n has invalid values specified, please check the user input")
+
         self.is_conflict = []
         if n in rset or n in cset or n in blockset:
             position = np.where(self.martix == n)
@@ -183,9 +196,12 @@ class Game_Sudoku(object):
  
     # determine whether the game is success
     def IsSuccess(self):
-        if self.martix.min() > 0 and not self.is_conflict:
-            self.blank = []
-            self.success_sign = True
-            self.end_time = time.time()
-        else:
-            self.success_sign = False
+        try:
+            if self.martix.min() > 0 and not self.is_conflict:
+                self.blank = []
+                self.success_sign = True
+                self.end_time = time.time()
+            else:
+                self.success_sign = False
+        except Exception as error:
+            print("Unexpected error")
