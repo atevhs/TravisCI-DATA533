@@ -1,8 +1,6 @@
 language: python
 python:
-  - 2.7
-  - 3.5
-  - 3.6
+  - 3.9
 before_install:
   - python --version
   - pip install -U pip
@@ -10,4 +8,4 @@ before_install:
   - pip install pygame
   - pip install codecov
 script:
-  -python Test_suite.py
+  - python Test_suite.py
