@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0,sys.path[0][:-4])
 import unittest
 from Sudoku_Show.Generate import Generate
 from Sudoku_Solve.Game_Sudoku import Game_Sudoku
