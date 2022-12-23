@@ -6,6 +6,8 @@ from Sudoku_Solve import configs
 import time
 import pygame
 import datetime
+import os
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 class TestPaint(unittest.TestCase):
     @classmethod
