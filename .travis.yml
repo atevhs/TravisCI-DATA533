@@ -1,6 +1,13 @@
 language: python
 python:
-  -"3.4"
-  -"3.5"
+  -"3.9.12"
+before_install:
+  - python --version
+  - pip install pygame
+  - pip install -U pip
+  - pip install -U pytest
+  - pip install codecov
 script:
   -python Test_suite.py
+after_success:
+  - codecov
