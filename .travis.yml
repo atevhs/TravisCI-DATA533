@@ -2,12 +2,5 @@ language: python
 python:
   -"3.9.12"
   dist:xenial
-before_install:
-  - pip install pygame
-  - pip install -U pip
-  - pip install -U pytest
-  - pip install codecov
 script:
   -python Test_suite.py
-after_success:
-  - codecov
