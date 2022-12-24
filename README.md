@@ -4,7 +4,10 @@
 
 **Course : DATA-533**
 
-###### Introduction
+**Pypi**: https://pypi.org/project/sudokuPackage/
+
+## Introduction
+
 **Sudoku** is a mathematical game that originated in Switzerland in the 18th century. It is a logic game that uses paper and pencil to perform calculations. Players need to reason out the numbers of all the remaining spaces based on the known numbers on a 9×9 board, and satisfy that the numbers in each row, column, and thick-line palace (3*3) contain 1-9 and are not repeated.
 
 - **Choose Level** [Easy/Medium/Difficult]
