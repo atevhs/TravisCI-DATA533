@@ -15,23 +15,31 @@ class Generate(object):
         """
         :param counts: the number of numbers
         """
-        while counts:
+        try:
+            while counts:
             # [x, y] is grid position, which means the position of grid is generated randomly
-            r = random.randint(0, 8)
-            c = random.randint(0, 8)
+                r = random.randint(0, 8)
+                c = random.randint(0, 8)
  
             # blank in matrix
-            if self.martix[r, c] == 0:
+                if self.martix[r, c] == 0:
                 # get number randomly
-                v = random.sample(self.possible_num(r, c), 1)[0]
-                self.martix[r, c] = v
-                counts -= 1
+                    v = random.sample(self.possible_num(r, c), 1)[0]
+                    self.martix[r, c] = v
+                    counts -= 1
  
         # solve the sudoku
-        if self.Solve():
-            return True
+            if self.Solve():
+                return True
+            else:
+                return False
+        except (ValueError, TypeError) as e:
+            print ("Invalid Input for counts!!!")
+        except IndexError as i:
+            print ("Index out of range!")
         else:
-            return False
+            pass 
+            
  
     # solve sudoku
     def Solve(self):
@@ -64,16 +72,23 @@ class Generate(object):
         :return: return possible number set
         """
         # [x, y] is the position of large grid(3 by 3 little square)
-        x, y = r // 3, c // 3
         """
         self.martix[r, :]: [r, c]the r of grid
         self.martix[:, c]: [r, c]the cumn of grid
         """
-        rSet = set(self.martix[r, :])  # [r, c] the r number set
-        cSet = set(self.martix[:, c])  # [r, c] the cumn number set
-        blockSet = set(self.martix[x * 3: x * 3 + 3, y * 3: y * 3 + 3].reshape(9))  # [r, c] the large gird number set
+        try:
+            x, y = r // 3, c // 3
+            rSet = set(self.martix[r, :])  # [r, c] the r number set
+            cSet = set(self.martix[:, c])  # [r, c] the cumn number set
+            blockSet = set(self.martix[x * 3: x * 3 + 3, y * 3: y * 3 + 3].reshape(9))  # [r, c] the large gird number set
  
-        return self.Nums - rSet - cSet - blockSet
+            return self.Nums - rSet - cSet - blockSet
+        except IndexError as i:
+            print("Matrix Index out of range")
+        except Exception as e:
+            print("Error:", str(e))
+        finally:
+            pass
  
     # Generate Sudoku puzzles from Sudoku disks
     def Generate(self, n):
