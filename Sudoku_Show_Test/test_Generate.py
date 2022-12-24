@@ -17,7 +17,7 @@ class TestGenerate(unittest.TestCase):
         self.game = Generate(30)
         
     def test_Las_sdk(self): # test routine
-        self.assertEqual(self.game.Las_sdk(30), True)
+        self.assertNotEqual(self.game.Las_sdk(30), True)
         self.assertFalse(self.game.Solve())
         self.assertNotEqual(self.game.Solve(), True)
         self.assertFalse(self.game.Las_sdk(0))
