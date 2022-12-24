@@ -35,10 +35,10 @@ class Generate(object):
                 return False
         except (ValueError, TypeError) as e:
             print ("Invalid Input for counts!!!")
+            pass
         except IndexError as i:
             print ("Index out of range!")
-        else:
-            pass 
+            pass
             
  
     # solve sudoku
