@@ -1,4 +1,4 @@
-# Sudoku Game Project
+# Sudoku Game Project [![Build Status](https://app.travis-ci.com/atevhs/TravisCI-DATA533.svg?branch=main)](https://app.travis-ci.com/atevhs/TravisCI-DATA533)
 
 **Contributors : Tia Wang & Shveta Sharma**
 
