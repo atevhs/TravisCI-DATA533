@@ -50,10 +50,10 @@ class TestPaint(unittest.TestCase):
         self.assertNotEqual(pd.Paint_success(self,pygame.display.set_mode([56, 70], 0, 0)), False)
         #self.assertEqual(pd.Paint_success(self), None)
         
-    #def test_PaintForm(self): # test routine
-    #    self.assertIsNone(pd.PaintForm(self, self.form, self.start_time, self.game.block_size, self.game.block_gap,
-    #                  self.game.move_x, self.game.move_y, self.game.press_x, self.game.press_y, self.game.martix, 
-    #                  self.game.blank, self.game.is_conflict, self.game.success_sign , self.game.start,self.end_time))
+    def test_PaintForm(self): # test routine
+        self.assertIsNone(pd.PaintForm(self, self.form, self.start_time, self.game.block_size, self.game.block_gap,
+                      self.game.move_x, self.game.move_y, self.game.press_x, self.game.press_y, self.game.martix, 
+                      self.game.blank, self.game.is_conflict, self.game.success_sign , self.game.start,self.end_time))
         
     @classmethod 
     def teardown_class(cls):
