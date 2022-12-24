@@ -1,6 +1,7 @@
 import unittest
 import pygame
 from Sudoku_Show.paint import Paint as pd
+from Sudoku_Show.paint import Paintchild as pd1
 from Sudoku_Solve.Game_Sudoku import Game_Sudoku
 from Sudoku_Solve import configs
 import time
@@ -52,8 +53,13 @@ class TestPaint(unittest.TestCase):
         
     def test_PaintForm(self): # test routine
         self.assertIsNone(pd.PaintForm(self, self.form, self.start_time, self.game.block_size, self.game.block_gap,
-                      self.game.move_x, self.game.move_y, self.game.press_x, self.game.press_y, self.game.martix, 
-                      self.game.blank, self.game.is_conflict, self.game.success_sign , self.game.start,self.end_time))
+                     self.game.move_x, self.game.move_y, self.game.press_x, self.game.press_y, self.game.martix, 
+                     self.game.blank, self.game.is_conflict, self.game.success_sign , self.game.start,self.end_time))
+                     
+    def test_Paint_success(self): # test routine
+        self.assertIsNone(pd1.Paint_success(self,pygame.display.set_mode([560, 700], 0, 0),"OK"))
+        self.assertIsNone(pd1.Paint_success(self,pygame.display.set_mode([0,0], 0, 0),"Not OK"))
+        #self.assertEqual(pd.Paint_success(self), None)
         
     @classmethod 
     def teardown_class(cls):
